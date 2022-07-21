@@ -1,0 +1,26 @@
+#registration {
+  margin: 0 auto;
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+
+    &> * {
+      margin-top: 20px;
+    }
+
+    &+p {
+      text-align: center;
+    }
+
+    &+p a {
+      display: block;
+      text-decoration: underline;
+      margin-top: 10px;
+    }
+  }
+}
