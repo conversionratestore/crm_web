@@ -1,0 +1,109 @@
+@import "Styles/mixins_var";
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./Assets/Fonts/Montserrat-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./Assets/Fonts/Montserrat.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./Assets/Fonts/Montserrat-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./Assets/Fonts/Montserrat-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, button, input {
+    font-family: "Montserrat", sans-serif;
+    font-size: $m;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+main {
+    padding: 10px;
+}
+
+button, .btn {
+    text-decoration: none;
+    color: $white;
+    border: none;
+    background-color: $violetAccent;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: .2s ease-out;
+    cursor: pointer;
+    box-shadow: $shadow;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border-radius: 2px;
+    display: inline-block;
+
+    &:hover {
+        box-shadow: $shadowHover;
+        opacity: 0.9;
+    }
+}
+
+.dn {
+    display: none !important;
+}
+
+.flx {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_content {
+    margin-left: 60px;
+    background-color: $bg;
+    min-height: 100vh;
+    position: relative;
+}
+
+.block {
+    background: $white;
+    box-shadow: $shadow_l;
+    border-radius: 10px;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}

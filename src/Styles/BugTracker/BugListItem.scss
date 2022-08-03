@@ -1,0 +1,30 @@
+@import "Styles/mixins_var";
+
+li {
+  @include flx($jc: flex-start);
+  margin-top: 2px;
+
+  &:last-child {
+    border-radius: 0 0 8px 8px;
+  }
+
+  &.low {
+    background-color: $info_bg;
+  }
+
+  &.medium {
+    background-color: $warning_bg;
+  }
+
+  &.high {
+    background-color: $error_bg;
+  }
+
+  p {
+    font-size: $s;
+    
+    a {
+      display: block;
+    }
+  }
+}

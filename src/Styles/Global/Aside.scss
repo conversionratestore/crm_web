@@ -1,0 +1,114 @@
+@import "src/Styles/mixins_var";
+
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $baseColor;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+  width: 60px;
+
+  &.active {
+    width: 210px;
+    z-index: 10000;
+
+    .arrow svg {
+      transform: rotateY(180deg);
+    }
+  }
+
+  ul {
+    li:not(:first-child) {
+      height: 40px;
+    }
+
+    & > :first-child {
+      height: 80px;
+      border-bottom: 1px solid $white;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin: 10px 0;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        margin-left: 10px;
+        border-radius: 30px 0 0 30px;
+        padding-left: 15px;
+        transition: all 0.3s ease-in-out;
+
+        span {
+          color: $white;
+          white-space: nowrap;
+        }
+
+        &.active {
+          background-color: $bg;
+
+          span {
+            color: $violetAccent;
+          }
+
+          svg {
+            fill: $violetAccent;
+          }
+        }
+
+        &:not(.active):hover {
+          background-color: rgba(240, 244, 248, 0.2);
+        }
+      }
+
+      &:first-child a:hover {
+        background: none;
+      }
+
+      svg {
+        height: 20px;
+        width: 20px;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+
+      &:first-child {
+        a {
+          padding-left: 5px;
+        }
+
+        svg {
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+
+    .logo span svg {
+      height: 30px;
+      width: 135px;
+    }
+
+    .arrow {
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        margin: 0;
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+  }
+}

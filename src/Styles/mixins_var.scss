@@ -1,0 +1,110 @@
+// mixins
+
+@mixin _1440 {
+  @media (max-width: 1440px){
+    @content;
+  }
+}
+
+@mixin _1170 {
+  @media (max-width: 1170px){
+    @content;
+  }
+}
+
+@mixin _768 {
+  @media (max-width: 768px){
+    @content;
+  }
+}
+
+@mixin _480 {
+  @media (max-width: 480px){
+    @content;
+  }
+}
+
+@mixin flx ($ai:center, $jc: space-between) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+}
+
+@mixin bg_image ($url, $bgs: contain) {
+  background: url($url) center center no-repeat;
+  background-size: $bgs;
+}
+
+@mixin pseudo ($pos: absolute, $display: block, $content: '') {
+  position: $pos;
+  display: $display;
+  content: $content;
+}
+
+@mixin сentering_xy() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin сentering_x() {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin сentering_y() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+// vars
+
+
+//colors
+$baseColor: #2b2b2b;
+$violetAccent: #5c51a5;
+$violetHover: #dcdbea;
+
+
+$white: #ffffff;
+$bg: #F0F4F8;
+
+//alert colors
+
+$error: #d33131;
+$success: #618c28;
+$info: #3b6099;
+$warning: #db9538;
+
+$error_bg: #fabebe;
+$success_bg: #d9faae;
+$info_bg: #8bdcf3;
+$warning_bg: #f8d7b2;
+
+
+//shadow
+
+$shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+$shadowHover: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+$shadow_l: 1px 4px 8px rgba(0 0 0 / 15%);
+
+//sizes
+$xs: 12px;
+$s: 14px;
+$m: 16px;
+$l: 18px;
+$xl: 20px;
+
+
+
+
+
+
+
+
+
+

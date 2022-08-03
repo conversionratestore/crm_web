@@ -2,24 +2,28 @@ import TextField from "@mui/material/TextField"
 import React from "react"
 import Button from "@mui/material/Button"
 import { useEffect, useState } from 'react'
-import 'Pages/PageStyle/Login.scss'
-import axios from "Apis/axios"
-import {useAuth} from "../Hooks/useAuth"
+import 'Styles/Pages/Login.scss'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { useGetLoginMutation } from '../redux/Api/authApi'
+import { useDispatch } from "react-redux"
+import { setCredentials } from "../redux/Slices/authSlice"
+import { useAuth } from "../Hooks/useAuth"
+import {setParams} from "../redux/Slices/configSlice"
 
 
-const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/
+const EMAIL_REGEX = /^[\w-]+@([\w-]+\.)+[\w]{2,6}$/
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const {token} = useAuth()
     const [pwd, setPwd] = useState('')
     const [email, setEmail] = useState('')
     const [validEmail, setValidEmail] = useState(false)
     const [access, setAccess] = useState(true)
-    const {signIn, auth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
     const prev = location.state?.from?.pathname || '/dashboard'
-    console.log(location)
+    const [login] = useGetLoginMutation()
 
     useEffect(() => {
         const test = EMAIL_REGEX.test(email)
@@ -37,15 +41,17 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('/auth/login', {email, pwd})
-            signIn(res.data.token, () => navigate(prev, {replace: true}))
+            const result = await login({email, pwd}).unwrap()
+            dispatch(setCredentials(result))
+            dispatch(setParams(result))
+            navigate(prev, {replace: true})
         } catch (e) {
             console.log(e)
         }
     }
 
 
-    return ( auth ? <Navigate to="/dashboard" replace={true} /> :
+    return ( token ? <Navigate to="/dashboard" replace={true} /> :
         <section className="login content">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
@@ -57,7 +63,7 @@ const Login = () => {
                     variant="contained">Login</Button>
             </form>
         </section>
-    );
-};
+    )
+}
 
-export default Login;
+export default Login

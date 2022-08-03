@@ -1,0 +1,139 @@
+@import "src/Styles/mixins_var";
+
+.alert {
+  position: fixed;
+  top: 80px;
+  right: 10px;
+  border-radius: 8px;
+  padding: 15px 25px 15px 50px;
+  opacity: 0;
+  overflow: hidden;
+  box-shadow: $shadow;
+  animation: showAlert 4s ease-in;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::before {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    content: '';
+    left: 25px;
+    top: calc(50% - 7.5px);
+  }
+
+  .loader {
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: loader 4s linear;
+  }
+
+  .close {
+    height: 15px;
+    width: 15px;
+    display: block;
+    margin-left: 15px;
+    transition: opacity 0.3s;
+    cursor: pointer;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      height: 100%;
+    }
+  }
+
+  &[data-status='info'] {
+    background: $info_bg;
+    color: $info;
+
+    .loader {
+      background-color: $info;
+    }
+
+    &::before {
+      background: url("/Assets/img/Alert/info.svg") center center no-repeat;
+      background-size: contain;
+    }
+
+    .close svg {
+      fill: $info;
+    }
+  }
+
+  &[data-status='error'] {
+    background: $error_bg;
+    color: $error;
+
+    .loader {
+      background-color: $error;
+    }
+
+    &::before {
+      background: url("/Assets/img/Alert/error.svg") center center no-repeat;
+      background-size: contain;
+    }
+
+    .close svg {
+      fill: $error;
+    }
+  }
+
+  &[data-status='success'] {
+    background: $success_bg;
+    color: $success;
+
+    .loader {
+      background-color: $success;
+    }
+
+    &::before {
+      background: url("/Assets/img/Alert/success.svg") center center no-repeat;
+      background-size: contain;
+    }
+
+    .close svg {
+      fill: $success;
+    }
+  }
+
+  &[data-status='warning'] {
+    background: $warning_bg;
+    color: $warning;
+
+    .loader {
+      background-color: $warning;
+    }
+
+    &::before {
+      background: url("/Assets/img/Alert/warning.svg") center center no-repeat;
+      background-size: contain;
+    }
+
+    .close svg {
+      fill: $warning;
+    }
+  }
+
+
+}
+
+@keyframes showAlert {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes loader {
+  0% { width: 0; }
+  100% { width: 100%; }
+}

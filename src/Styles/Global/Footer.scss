@@ -1,0 +1,45 @@
+@import "src/Styles/mixins_var";
+
+footer {
+  background-color: $baseColor;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+
+  p {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0 0 0 / 40%);
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  animation: showOverlay 0.5s ease-in-out;
+
+
+  &[data-pos="mid"] {
+    z-index: 5000;
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes showOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

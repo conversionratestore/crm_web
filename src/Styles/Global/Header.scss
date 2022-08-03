@@ -1,0 +1,21 @@
+@import 'src/Styles/mixins_var';
+
+header {
+  background-color: $white;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  box-shadow: $shadow_l;
+
+  .account a {
+    color: $baseColor;
+    margin-left: 20px;
+  }
+
+  .log_out {
+    color: $baseColor;
+    cursor: pointer;
+  }
+}

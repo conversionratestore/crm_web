@@ -1,19 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
-import './PageStyle/Register.scss'
+import '../Styles/Pages/Register.scss'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import Alert from "@mui/material/Alert";
-import axios from "Apis/axios";
-import { Link } from 'react-router-dom';
+import Alert from "@mui/material/Alert"
+import {Link, useNavigate} from 'react-router-dom'
+import { useRegisterMutation } from "../redux/Api/authApi"
+import {useDispatch} from "react-redux"
+import {setParams} from "../redux/Slices/configSlice"
 
 
-const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/
-const REGISTER_URL = '/auth/registration'
+const EMAIL_REGEX = /^[\w-]+@([\w-]+\.)+[\w]{2,6}$/
 
 const Register = () => {
     const emailRef = useRef()
     const warningRef = useRef()
-    const errRef = useRef()
+    const dispatch = useDispatch()
+    const [register] = useRegisterMutation()
+    const navigate = useNavigate()
+
 
     const [email, setEmail] = useState('')
     const [validEmail, setValidEmail] = useState(false)
@@ -24,7 +28,6 @@ const Register = () => {
     const [validMatch, setValidMatch] = useState(false)
 
     const [warningMsg, setWarningMsg] = useState('')
-    const [errMsg, setErrMsg] = useState({ss: "", msg: ""})
 
     useEffect(() => {
         const result = EMAIL_REGEX.test(email)
@@ -49,17 +52,11 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(REGISTER_URL,{email, pwd})
-            const ss = res.data.ss
-            const msg = res.data.msg
-            setErrMsg({ss, msg})
-            setEmail('')
-            setPwd('')
-            setMatchPwd('')
+            const response = await register({email, pwd}).unwrap()
+            dispatch(setParams(response))
+            navigate('/login', {replace: true})
         } catch (e) {
-            const ss = e.response.data.ss
-            const msg = e.response.data.msg
-            setErrMsg({ss, msg})
+            dispatch(setParams(e.data))
         }
     }
 
@@ -67,30 +64,30 @@ const Register = () => {
     return (
         <section id="registration">
             <Alert ref={warningRef} className={warningMsg ? "warning" : "warning dn"} severity="warning">{warningMsg}</Alert>
-            <Alert ref={errRef} className={errMsg.ss ? "" : "dn"} severity={errMsg.ss ? errMsg.ss : "info"}>{errMsg.msg}</Alert>
             <h1>Registration</h1>
             <form onSubmit={handleSubmit}>
-            <TextField
-                type="email"
-                ref={emailRef}
-                id="email"
-                label="Email"
-                variant="filled"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                value={email}/>
-            <TextField onChange={(e) => setPwd(e.target.value)} type="password" id="pwd" label="Password" variant="filled" required value={pwd} />
-            <TextField onChange={(e) => setMatchPwd(e.target.value)} type="password" id="matchPwd" label="Confirm password" variant="filled" required value={matchPwd} />
-            <Button
-                type="submit"
-                disabled={!validEmail || !validMatch}
-                variant="contained">Sign Up</Button>
+
+                <TextField
+                    type="email"
+                    ref={emailRef}
+                    id="email"
+                    label="Email"
+                    variant="filled"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    value={email}/>
+                <TextField onChange={(e) => setPwd(e.target.value)} type="password" id="pwd" label="Password" variant="filled" required value={pwd} />
+                <TextField onChange={(e) => setMatchPwd(e.target.value)} type="password" id="matchPwd" label="Confirm password" variant="filled" required value={matchPwd} />
+                <Button
+                    type="submit"
+                    disabled={!validEmail || !validMatch}
+                    variant="contained">Sign Up</Button>
             </form>
             <p>Already registered?<br />
                 <Link to="/login">Sign In</Link>
             </p>
         </section>
-    );
-};
+    )
+}
 
-export default Register;
+export default Register

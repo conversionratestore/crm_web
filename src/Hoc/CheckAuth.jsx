@@ -4,9 +4,9 @@ import {useAuth} from "../Hooks/useAuth"
 
 const CheckAuth = () => {
     const location = useLocation()
-    const {auth} = useAuth()
+    const {token} = useAuth()
 
-    if(!auth) {
+    if(!token) {
         return <Navigate to="/login" state={{from: location}} replace={true} />
     }
 

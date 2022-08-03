@@ -1,6 +1,11 @@
-import { useContext } from 'react'
-import { AuthContext } from 'Hoc/AuthProvider'
+import { useSelector } from 'react-redux'
 
 export function useAuth() {
-    return useContext(AuthContext)
+    const {role, id, token} = useSelector(state => state.auth)
+
+    return {
+        role,
+        id,
+        token
+    }
 }
