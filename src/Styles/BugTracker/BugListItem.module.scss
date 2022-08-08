@@ -8,15 +8,15 @@
     border-radius: 0 0 8px 8px;
   }
 
-  &.low {
+  &[data-priority="low"] {
     background-color: $info_bg;
   }
 
-  &.medium {
+  &[data-priority="medium"] {
     background-color: $warning_bg;
   }
 
-  &.high {
+  &[data-priority="high"] {
     background-color: $error_bg;
   }
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const BugListItem = ({data}) => {
     return (
-        <li className={data.priority.toLowerCase() + ' ' + style.listItem}>
+        <li className={style.listItem} data-priority={data.priority.toLowerCase()}>
             <p><Link to={'/bug-tracker/'+data.id}>{data.test_name}</Link></p>
             <p>{data.client}</p>
             <p>{data.priority}</p>
