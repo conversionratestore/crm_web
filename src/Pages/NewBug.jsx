@@ -32,7 +32,7 @@ const NewBug = () => {
                     data[item.id] = item.value
                 }
             })
-            data.createt_by = id
+            data.created_by = id
             try {
                 const result = await createBug(data).unwrap()
                 dispatch(setParams(result))
