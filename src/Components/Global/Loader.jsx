@@ -1,7 +1,7 @@
 import React from 'react'
 import loader from 'Styles/Global/Loader.module.scss'
 
-const Loader = ({height = '50px'}) => {
+const Loader = ({height}) => {
     return (
         <div className={loader.center} style={{height: height}}>
             <div className={loader.wave} />

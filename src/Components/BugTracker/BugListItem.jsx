@@ -1,11 +1,11 @@
 import React from 'react'
-import 'Styles/BugTracker/BugListItem.scss'
+import style from 'Styles/BugTracker/BugListItem.module.scss'
 import { Link } from 'react-router-dom'
 
 
 const BugListItem = ({data}) => {
     return (
-        <li className={data.priority.toLowerCase()}>
+        <li className={data.priority.toLowerCase() + ' ' + style.listItem}>
             <p><Link to={'/bug-tracker/'+data.id}>{data.test_name}</Link></p>
             <p>{data.client}</p>
             <p>{data.priority}</p>

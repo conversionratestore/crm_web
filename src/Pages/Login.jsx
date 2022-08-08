@@ -45,8 +45,9 @@ const Login = () => {
             dispatch(setCredentials(result))
             dispatch(setParams(result))
             navigate(prev, {replace: true})
-        } catch (e) {
+        } catch (err) {
             console.log(e)
+            dispatch(setParams({status: 'error', message: err.data.message || err.error}))
         }
     }
 

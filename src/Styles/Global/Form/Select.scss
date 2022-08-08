@@ -1,0 +1,76 @@
+@import 'Styles/mixins_var';
+
+.select_wrapper {
+  position: relative;
+
+  &[data-required="true"]+label::after {
+    @include pseudo($content: '*');
+    color: $error;
+    top: 0;
+    right: -10px;
+  }
+
+  ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+    transition-delay: 0.1s;
+    transform-origin: top left;
+    box-shadow: $shadow_l;
+    background-color: $white;
+    z-index: 1;
+
+    li {
+      cursor: pointer;
+      height: 30px;
+      @include flx();
+      padding: 0 10px;
+      transition: all 0.3s linear;
+
+      &:hover {
+        background-color: $violetHover;
+      }
+
+      &.selected {
+        background: $violetAccent;
+        color: white;
+      }
+    }
+  }
+
+  input:focus+label+ul {
+    transform: scale(1);
+  }
+
+  &::after {
+    @include pseudo();
+    @include bg_image('/Assets/img/icons/arrow.svg');
+    height: 15px;
+    width: 15px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  input {
+    cursor: pointer;
+
+    &.error {
+      border-bottom: 1px solid $error;
+
+      &:focus {
+        box-shadow: 0 1px 0 0 $error;
+      }
+
+      &+label {
+        color: $error;
+      }
+    }
+  }
+}

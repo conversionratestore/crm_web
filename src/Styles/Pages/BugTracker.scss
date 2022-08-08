@@ -30,6 +30,11 @@
   z-index: 1;
   padding: 5px;
 
+  ul {
+    position: relative;
+    min-height: 50px;
+  }
+
   .title {
     justify-content: flex-start;
 

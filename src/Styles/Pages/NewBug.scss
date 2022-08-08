@@ -1,0 +1,26 @@
+@import 'Styles/mixins_var';
+
+form {
+  @include flx($ai: flex-start);
+  flex-wrap: wrap;
+  padding: 10px;
+
+
+  .select_type {
+    width: 24%;
+  }
+
+  .input_field:first-child,
+  .input_field:nth-child(2) {
+    width: 49%;
+  }
+
+  .input_field:nth-child(3),
+  .input_field:nth-child(8),
+  .input_field:nth-child(9),
+  .input_field:nth-child(10),
+  .input_field:nth-child(11),{
+    width: 100%;
+  }
+
+}

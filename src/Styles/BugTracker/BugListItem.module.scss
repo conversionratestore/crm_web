@@ -1,6 +1,6 @@
 @import "Styles/mixins_var";
 
-li {
+.listItem {
   @include flx($jc: flex-start);
   margin-top: 2px;
 

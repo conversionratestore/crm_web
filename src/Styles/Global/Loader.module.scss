@@ -3,6 +3,8 @@
 .center {
   @include сentering_xy();
   @include flx($jc: center);
+  height: 50%;
+  max-height: 50px;
 }
 .wave {
   height: 100%;

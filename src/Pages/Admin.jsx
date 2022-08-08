@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from "Components/Global/Form/Select"
 
 const Admin = () => {
     return (

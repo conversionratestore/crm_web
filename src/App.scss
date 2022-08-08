@@ -28,13 +28,15 @@
     font-style: normal;
 }
 
-*, *::before, *::after {
+*, *::before, *::after, textarea {
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-html, button, input {
+html, button, input, textarea {
     font-family: "Montserrat", sans-serif;
     font-size: $m;
 }
@@ -55,9 +57,10 @@ h1 {
 
 main {
     padding: 10px;
+    min-height: calc(100vh - 80px);
 }
 
-button, .btn {
+.btn {
     text-decoration: none;
     color: $white;
     border: none;
@@ -76,6 +79,11 @@ button, .btn {
     &:hover {
         box-shadow: $shadowHover;
         opacity: 0.9;
+    }
+
+    &:disabled {
+        background-color: $gray;
+        pointer-events: none;
     }
 }
 
@@ -107,3 +115,5 @@ button, .btn {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+

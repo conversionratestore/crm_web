@@ -1,0 +1,88 @@
+@import 'Styles/mixins_var';
+
+.input_field {
+  position: relative;
+  margin: 16px 0;
+
+  input, textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $gray;
+    border-radius: 0;
+    outline: none;
+    height: 30px;
+    width: 100%;
+    font-size: $m;
+    margin: 0 0 8px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: box-shadow .3s ease-in-out, border .3s ease-in-out;
+
+    &:focus {
+      border-bottom: 1px solid $violetAccent;
+      box-shadow: 0 1px 0 0 $violetAccent;
+
+      &+label {
+        color: $violetAccent;
+        top: -10px;
+        font-size: $xs;
+      }
+    }
+
+    &.error {
+      border-bottom: 1px solid $error;
+
+      &:focus {
+        box-shadow: 0 1px 0 0 $error;
+      }
+
+      &+label {
+        color: $error;
+      }
+    }
+
+    &[data-required="true"]+label::after {
+      @include pseudo($content: '*');
+      color: $error;
+      top: 0;
+      right: -10px;
+    }
+  }
+
+  label {
+    color: $gray;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: $m;
+    cursor: text;
+    transition: all .2s ease-out;
+
+    &.active {
+      top: -10px;
+      font-size: $xs;
+    }
+  }
+
+  textarea {
+    resize: none;
+    line-height: 1.5rem;
+    top: 12px;
+
+    &:focus+label {
+      top: -12px;
+    }
+
+    &+label.active {
+      top: -12px;
+    }
+  }
+
+  .err_msg {
+    display: block;
+    color: $error;
+    font-size: $xs;
+    margin-top: -5px;
+  }
+}

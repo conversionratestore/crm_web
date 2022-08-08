@@ -20,8 +20,15 @@ export const bugTrackerApi = createApi({
             query: (status = 'new') => ({
                 url: `${GET_LIST_URL}?status=${status}`
             }),
+        }),
+        createBug: build.mutation({
+            query: (body) => ({
+                url: GET_LIST_URL,
+                method: 'POST',
+                body
+            })
         })
     })
 })
 
-export const { useGetBugsQuery } = bugTrackerApi
+export const { useGetBugsQuery, useCreateBugMutation } = bugTrackerApi

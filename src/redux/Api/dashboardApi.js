@@ -7,7 +7,7 @@ export const dashboardApi = createApi({
     reducerPath: 'dashboardApi',
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_URL,
-        keepUnusedDataFor: 5,
+        keepUnusedDataFor: 30,
         prepareHeaders: (headers, { getState }) => {
             const token = getState().auth.token
             if (token) {
